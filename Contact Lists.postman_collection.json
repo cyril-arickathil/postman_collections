@@ -1,0 +1,884 @@
+{
+	"info": {
+		"_postman_id": "99d21b64-fde7-4d1d-93cc-2bb588ed74d8",
+		"name": "Contact Lists",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37569894"
+	},
+	"item": [
+		{
+			"name": "Basic end-point test",
+			"item": [
+				{
+					"name": "[Setup][1] Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"token\", jsonData.token);\r",
+									"pm.environment.set(\"loggedInUserFirstName\", jsonData.user.firstName);\r",
+									"pm.environment.set(\"loggedInUserLastName\", jsonData.user.lastName);\r",
+									"pm.environment.set(\"loggedInUserEmail\", jsonData.user.email);\r",
+									"\r",
+									"pm.test(\"Email is set correctly\", function () {\r",
+									"    pm.expect(jsonData.user.email).to.exist;\r",
+									"    pm.expect(jsonData.user.email).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"variable_key\", \"variable_value\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cyril_test@fake.com\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[Setup][1] Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"cyril_test@fake.com\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://thinking-tester-contact-list.herokuapp.com/users/login",
+									"protocol": "https",
+									"host": [
+										"thinking-tester-contact-list",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1740138685&sid=af571f24-03ee-46d1-9f90-ab9030c2c74c&s=bLN31DfkffaHbY3C7wfD6TIGJW5xhBO9CbrVFtxyBg4%3D\"}]}"
+								},
+								{
+									"key": "Reporting-Endpoints",
+									"value": "heroku-nel=https://nel.heroku.com/reports?ts=1740138685&sid=af571f24-03ee-46d1-9f90-ab9030c2c74c&s=bLN31DfkffaHbY3C7wfD6TIGJW5xhBO9CbrVFtxyBg4%3D"
+								},
+								{
+									"key": "Nel",
+									"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I3NDM2ZTQxNDc3YzAwMTM2ODA5ZTQiLCJpYXQiOjE3NDAxMzg2ODV9.mPceDQaFM5tImV9YcqtMb7msvWDDlnJTS_wwkEHXluQ; Max-Age=36000; Path=/; Expires=Fri, 21 Feb 2025 21:51:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "286"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"11e-hNaDRv+UIB3qu5ldVzuxF60alX4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 Feb 2025 11:51:25 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"_id\": \"67b7436e41477c00136809e4\",\n        \"firstName\": \"Cyril\",\n        \"lastName\": \"Arickathil\",\n        \"email\": \"cyril_test@fake.com\",\n        \"__v\": 18\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I3NDM2ZTQxNDc3YzAwMTM2ODA5ZTQiLCJpYXQiOjE3NDAxMzg2ODV9.mPceDQaFM5tImV9YcqtMb7msvWDDlnJTS_wwkEHXluQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[2] Get Contact List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/contacts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[3] Get Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/contacts/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[4] Add Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"id\", jsonData._id);\r",
+									"\r",
+									"var firstName = pm.environment.get('firstName');\r",
+									"console.log(\"check this --- \"+firstName);\r",
+									"\r",
+									"pm.test(\"check correct first name is added \"+jsonData.firstName+ \" from \"+firstName+\"\", function () {\r",
+									"    pm.expect(jsonData.firstName).to.eql(firstName);\r",
+									"});\r",
+									"var job = jsonData.email\r",
+									"console.log(job)\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(jsonData.email).to.eql(pm.environment.get('email'));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"{{firstName}}\",\r\n    \"lastName\": \"{{lastName}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"location\": {\r\n        \"city\": \"{{$randomCity}}\",\r\n        \"country\": \"{{$randomCountry}}\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"{{$randomJobTitle}}\",\r\n    \t\"company\": \"{{company}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/contacts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[4] Add Contact--",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"id\", jsonData._id);\r",
+									"\r",
+									"var firstName = pm.environment.get('firstName');\r",
+									"console.log(\"check this --- \"+firstName);\r",
+									"\r",
+									"pm.test(\"check correct first name is added \"+jsonData.firstName+ \" from \"+firstName+\"\", function () {\r",
+									"    pm.expect(jsonData.firstName).to.eql(firstName);\r",
+									"});\r",
+									"var job = jsonData.email\r",
+									"console.log(job)\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(jsonData.email).to.eql(pm.environment.get('email'));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"James\",\r\n    \"lastName\": \"Dave\",\r\n    \"email\": \"james_dave@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"{{$randomCity}}\",\r\n        \"country\": \"{{$randomCountry}}\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"{{$randomJobTitle}}\",\r\n    \t\"company\": \"{{company}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts",
+							"protocol": "https",
+							"host": [
+								"thinking-tester-contact-list",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[5] Update Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Robert\",\r\n    \"lastName\": \"Hill\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/contacts/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[6] Delete Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/contacts/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[6] Delete Contact",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{id}}",
+									"protocol": "https",
+									"host": [
+										"thinking-tester-contact-list",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"contacts",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1740138763&sid=af571f24-03ee-46d1-9f90-ab9030c2c74c&s=9nTDlFiM1aIX7vY66iWqmCAB%2BJJ9XSOnA7YS92wPpH0%3D\"}]}"
+								},
+								{
+									"key": "Reporting-Endpoints",
+									"value": "heroku-nel=https://nel.heroku.com/reports?ts=1740138763&sid=af571f24-03ee-46d1-9f90-ab9030c2c74c&s=9nTDlFiM1aIX7vY66iWqmCAB%2BJJ9XSOnA7YS92wPpH0%3D"
+								},
+								{
+									"key": "Nel",
+									"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"f-smqnjm2ArsFbkvZ+qy6N7Dow4bQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 Feb 2025 11:52:43 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "Contact deleted"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Negative test",
+			"item": [
+				{
+					"name": "[Setup][1] - Add Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"id\", jsonData._id);\r",
+									"pm.environment.set(\"firstName\", jsonData.firstName); // Set firstName in environment variable\r",
+									"pm.environment.set(\"email\", jsonData.email); // Set email in environment variable\r",
+									"\r",
+									"var firstName = pm.environment.get('firstName')\r",
+									"pm.test(`check correct first name is added as \"${firstName}\"`, function () {\r",
+									"    pm.expect(jsonData.firstName).to.eql(firstName); // Use pm.environment.get to retrieve firstName\r",
+									"});\r",
+									"\r",
+									"var email = pm.environment.get('email')\r",
+									"pm.test(`check email added as \"${email}\"`, function () {\r",
+									"    pm.expect(jsonData.email).to.eql(email); // Use the defined email variable for comparison\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I3NDM2ZTQxNDc3YzAwMTM2ODA5ZTQiLCJpYXQiOjE3NDAwNjM4MDZ9.DCH1Mq5HiQkis4baftE3GogLvO-Z4A2_XHsFGGthGhI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"{{firstName}}\",\r\n    \"lastName\": \"{{lastName}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"location\": {\r\n        \"city\": \"Boston, MA\",\r\n        \"country\": \"{{$randomCountry}}\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"Software Tester\",\r\n    \t\"company\": \"{{company}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/contacts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact List - Unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts",
+							"protocol": "https",
+							"host": [
+								"thinking-tester-contact-list",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact -Not Found",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I3NDM2ZTQxNDc3YzAwMTM2ODA5ZTQiLCJpYXQiOjE3NDAwNjM4MDZ9.DCH1Mq5HiQkis4baftE3GogLvO-Z4A2_XHsFGGthGhI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{/contacts/67b74566fcfd660013be163f",
+							"host": [
+								"{"
+							],
+							"path": [
+								"contacts",
+								"67b74566fcfd660013be163f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact - Missing Required Fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var message = \"Contact validation failed\"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(`validation error message thrown as \"${message}\"`, function () {\r",
+									"    pm.expect(jsonData._message).equal(message)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"test name tc001\", function () {\r",
+									"     pm.expect(pm.response.responseTime).to.be.below(20*1000);\r",
+									"});\r",
+									"pm.test(\"status 400\", function () {\r",
+									"     pm.expect(pm.response.code).to.equal(400);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I3NDM2ZTQxNDc3YzAwMTM2ODA5ZTQiLCJpYXQiOjE3NDAwNjM4MDZ9.DCH1Mq5HiQkis4baftE3GogLvO-Z4A2_XHsFGGthGhI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"asmith@thinkingtester.com\",\r\n    \"location\": {\r\n        \"city\": \"Boston, MA\",\r\n        \"country\": \"USA\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"Software Tester\",\r\n    \t\"company\": \"Microsoft\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts",
+							"protocol": "https",
+							"host": [
+								"thinking-tester-contact-list",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact -First name too long",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Contact validation failed: firstName\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2I3NDM2ZTQxNDc3YzAwMTM2ODA5ZTQiLCJpYXQiOjE3NDAwNjM4MDZ9.DCH1Mq5HiQkis4baftE3GogLvO-Z4A2_XHsFGGthGhI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Amyqqqqqweeeeeeeeeeeeeerebhfdhbfdhvbfdjhbvjfhbvjfdhbvjhfdbvjfhdbvhbfdwhhdkjbdkjfbdjf\",\r\n    \"lastName\": \"Smith\",\r\n    \"email\": \"asmith@thinkingtester.com\",\r\n    \"location\": {\r\n        \"city\": \"Boston, MA\",\r\n        \"country\": \"USA\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"Software Tester\",\r\n    \t\"company\": \"Microsoft\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts",
+							"protocol": "https",
+							"host": [
+								"thinking-tester-contact-list",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Teardown] - Delete Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts/{{id}}",
+							"protocol": "https",
+							"host": [
+								"thinking-tester-contact-list",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contacts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Response time is less than 30 secs\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(30*1000);\r",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://thinking-tester-contact-list.herokuapp.com",
+			"type": "string"
+		}
+	]
+}
